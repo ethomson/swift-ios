@@ -102,6 +102,9 @@ class ViewController: UIViewController {
 
     func checkForMatch(one: Tile!, two: Tile!) {
         if (one.name == two.name) {
+            one.pop()
+            two.pop()
+
             self.matches.append(one)
             self.matches.append(two)
 

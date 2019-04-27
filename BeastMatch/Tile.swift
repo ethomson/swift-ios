@@ -46,4 +46,13 @@ class Tile : UIButton {
             self.setImage(self.hiddenImage, for: [])
         }, completion: completion)
     }
+
+    func pop(completion: ((Bool) -> Void)? = nil) {
+        UIView.animate(withDuration: 0.3, delay: 0, options: .curveLinear, animations: {
+            Thread.sleep(forTimeInterval: 0.09)
+            self.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
+        }, completion: { _ in
+            self.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+        })
+    }
 }
