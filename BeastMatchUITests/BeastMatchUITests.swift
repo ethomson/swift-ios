@@ -1,34 +1,79 @@
+//  BeastMatch
 //
-//  BeastMatchUITests.swift
-//  BeastMatchUITests
-//
-//  Created by Edward Thomson on 2019-04-27.
 //  Copyright © 2019 Edward Thomson. All rights reserved.
-//
 
 import XCTest
 
 class BeastMatchUITests: XCTestCase {
+    var app: XCUIApplication!
 
     override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-
-        // In UI tests it is usually best to stop immediately when a failure occurs.
         continueAfterFailure = false
 
-        // UI tests must launch the application that they test. Doing this in setup will make sure it happens for each test method.
-        XCUIApplication().launch()
-
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
+        app = XCUIApplication()
+        app.launch()
     }
 
     override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testExample() {
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testDoubleTapOnTileIsIgnored() {
+        XCTAssert(app.buttons["0"].label == "Hidden")
+
+        app.buttons["0"].tap()
+        XCTAssert(app.buttons["0"].label != "Hidden")
+
+        app.buttons["0"].tap()
+        XCTAssert(app.buttons["0"].label != "Hidden")
     }
 
+    func testTapOnVisibleTileIsIgnored() {
+        testSelectMatchingTiles()
+        XCTAssert(app.buttons["0"].label != "Hidden")
+
+        app.buttons["0"].tap()
+        app.buttons["0"].tap()
+        XCTAssert(app.buttons["0"].label != "Hidden")
+    }
+
+    func testSelectMatchingTiles() {
+        for idx in (1...23) {
+            XCTAssert(app.buttons["0"].label == "Hidden")
+
+            app.buttons["0"].tap()
+            XCTAssert(app.buttons["0"].label != "Hidden")
+
+            let button = app.buttons[String(idx)]
+            button.tap()
+
+            if (button.label != "Hidden") {
+                XCTAssert(button.label == app.buttons["0"].label)
+                return
+            }
+        }
+
+        XCTFail("no matching tile")
+    }
+
+    func testWin() {
+        for a in (0...22) {
+            for b in (a+1...23) {
+                let buttonA = app.buttons[String(a)]
+                let buttonB = app.buttons[String(b)]
+
+                if (buttonA.label != "Hidden" || buttonB.label != "Hidden") {
+                    continue
+                }
+
+                buttonA.tap()
+                buttonB.tap()
+
+                if (buttonA.label != "Hidden" && buttonB.label != "Hidden") {
+                    break
+                }
+            }
+        }
+
+        XCTAssertEqual(app.alerts.element.label, "You win!")
+    }
 }

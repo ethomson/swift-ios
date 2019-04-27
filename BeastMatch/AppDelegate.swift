@@ -1,10 +1,6 @@
-//
-//  AppDelegate.swift
 //  BeastMatch
 //
-//  Created by Edward Thomson on 2019-04-27.
 //  Copyright © 2019 Edward Thomson. All rights reserved.
-//
 
 import UIKit
 

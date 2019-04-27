@@ -14,6 +14,7 @@
 		72C6D2F42274C62400A4013E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 72C6D2F22274C62400A4013E /* LaunchScreen.storyboard */; };
 		72C6D2FF2274C62400A4013E /* BeastMatchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72C6D2FE2274C62400A4013E /* BeastMatchTests.swift */; };
 		72C6D30A2274C62400A4013E /* BeastMatchUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72C6D3092274C62400A4013E /* BeastMatchUITests.swift */; };
+		72C6D3182274C75000A4013E /* Tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72C6D3172274C75000A4013E /* Tile.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		72C6D3052274C62400A4013E /* BeastMatchUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BeastMatchUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		72C6D3092274C62400A4013E /* BeastMatchUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeastMatchUITests.swift; sourceTree = "<group>"; };
 		72C6D30B2274C62400A4013E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		72C6D3172274C75000A4013E /* Tile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tile.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 				72C6D2F02274C62400A4013E /* Assets.xcassets */,
 				72C6D2F22274C62400A4013E /* LaunchScreen.storyboard */,
 				72C6D2F52274C62400A4013E /* Info.plist */,
+				72C6D3172274C75000A4013E /* Tile.swift */,
 			);
 			path = BeastMatch;
 			sourceTree = "<group>";
@@ -256,6 +259,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				72C6D3182274C75000A4013E /* Tile.swift in Sources */,
 				72C6D2EC2274C62400A4013E /* ViewController.swift in Sources */,
 				72C6D2EA2274C62400A4013E /* AppDelegate.swift in Sources */,
 			);
@@ -432,7 +436,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = M256B56H7U;
 				INFOPLIST_FILE = BeastMatch/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -440,6 +445,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.edwardthomson.BeastMatch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "Development Profile";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -449,7 +455,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = M256B56H7U;
 				INFOPLIST_FILE = BeastMatch/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -457,6 +465,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.edwardthomson.BeastMatch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "App Store Distribution";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
