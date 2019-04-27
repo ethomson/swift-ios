@@ -11,6 +11,7 @@ class BeastMatchUITests: XCTestCase {
         continueAfterFailure = false
 
         app = XCUIApplication()
+        app.launchArguments = ["-noanimation"]
         app.launch()
     }
 

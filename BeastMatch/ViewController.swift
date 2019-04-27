@@ -14,7 +14,15 @@ class ViewController: UIViewController {
     lazy var matches = [Tile?]()
     var firstTile:Tile? = nil
 
+    var animation = true
+
     override func viewDidLoad() {
+        for argument in CommandLine.arguments {
+            if (argument == "-noanimation") {
+                animation = false
+            }
+        }
+
         let paddingX = 15
         let paddingY = 15
 
@@ -38,6 +46,7 @@ class ViewController: UIViewController {
                 let y = startY + row * (buttonSize + paddingY)
 
                 self.tiles[idx] = Tile()
+                self.tiles[idx]!.animation = animation
                 self.tiles[idx]!.accessibilityIdentifier = String(idx)
                 self.tiles[idx]!.frame = CGRect(x: x, y: y, width: buttonSize, height: buttonSize)
                 self.tiles[idx]!.addTarget(self, action: #selector(self.buttonPressed), for: .touchUpInside)
@@ -89,7 +98,9 @@ class ViewController: UIViewController {
             let one = self.firstTile
             self.firstTile = nil
 
-            self.disableButtons()
+            if (animation) {
+                self.disableButtons()
+            }
 
             completion = { (finished: Bool) -> () in
                 self.checkForMatch(one: one, two: sender)
@@ -112,8 +123,10 @@ class ViewController: UIViewController {
             return
         }
 
-        Thread.sleep(forTimeInterval: 1.0)
-        self.enableButtons()
+        if (animation) {
+            Thread.sleep(forTimeInterval: 1.0)
+            self.enableButtons()
+        }
 
         one.hide()
         two.hide()
