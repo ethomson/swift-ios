@@ -64,6 +64,8 @@ class ViewController: UIViewController {
         for tile in self.tiles {
             tile!.hide()
         }
+
+        shuffleTiles(tiles: self.tiles)
     }
 
     func setupTiles() {
